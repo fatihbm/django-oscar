@@ -57,6 +57,7 @@ USE_TZ = True
 TIME_ZONE = 'Europe/London'
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -109,10 +110,11 @@ MEDIA_ROOT = location("public/media")
 MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
-STATIC_ROOT = location('public/static')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = (
-    location('static/'),
+    os.path.join(PROJECT_ROOT, 'static'),
 )
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
